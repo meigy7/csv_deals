@@ -1,0 +1,12 @@
+venv/
+snaps/
+media/deals/*
+app_deals/migrations/*
+!app_deals/migrations/__init__.py
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
