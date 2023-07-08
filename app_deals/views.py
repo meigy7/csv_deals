@@ -22,14 +22,14 @@ class DealAPIList(generics.ListCreateAPIView):
     queryset = Deal.objects.all()
     serializer_class = DealSerializer
 
-
+# HTML Upload page
 class DealsUploadPage(APIView):
     def get(self, request):
         template = loader.get_template('deals_list/file_upload.html')
         context = {}
         return HttpResponse(template.render(context, request))
 
-
+# API Upload function
 class DealAPIView(APIView):
     def post(self, request):
         csv_file = request.data['deals']
@@ -56,14 +56,13 @@ class DealAPIView(APIView):
         except Exception as e:
             return Response({'msg':'В процессе обработки файла произошла ошибка:', 'errors':[str(e), serializer.errors]}, status=status.HTTP_400_BAD_REQUEST)
 
-
     def get(self, request):
         model = Deal.objects.all()
         serializer = DealSerializer(model, many=True)
         return Response(serializer.data)
 
 
-
+# Cтраница HTML, получение выборки + функция выборки
 def deals_get_page(request):
     template = loader.get_template('deals_list/get_deals.html')
     context = {}
@@ -108,76 +107,3 @@ def deals_get_page(request):
     
     
     return HttpResponse(template.render(context, request))
-
-
-
-
-
-
-
-
-
-# @csrf_exempt
-# def snippet_list(request):
-#     """
-#     List all code snippets, or create a new snippet.
-#     """
-#     if request.method == 'GET':
-#         snippets = Deal.objects.all()
-#         serializer = DealSerializer(snippets, many=True)
-#         return JsonResponse(serializer.data, safe=False)
-
-#     elif request.method == 'POST':
-#         data = JSONParser().parse(request)
-#         serializer = DealSerializer(data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.data, status=201)
-#         return JsonResponse(serializer.errors, status=400)
-
-# @csrf_exempt
-# def snippet_detail(request, pk):
-#     """
-#     Retrieve, update or delete a code snippet.
-#     """
-#     try:
-#         snippet = Deal.objects.get(pk=pk)
-#     except Deal.DoesNotExist:
-#         return HttpResponse(status=404)
-
-#     if request.method == 'GET':
-#         serializer = DealSerializer(snippet)
-#         return JsonResponse(serializer.data)
-
-#     elif request.method == 'PUT':
-#         data = JSONParser().parse(request)
-#         serializer = DealSerializer(snippet, data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.data)
-#         return JsonResponse(serializer.errors, status=400)
-
-#     elif request.method == 'DELETE':
-#         snippet.delete()
-#         return HttpResponse(status=204)
-
-
-
-
-        # if request.form.get('type_action') == 'update_settings_binv5':
-        #     if request.form.get("min_trade_turnover_binv5") != None:
-        #         # db.query(ConfigSite).filter_by(name="min_trade_turnover_binv5").first().value = request.form["min_trade_turnover_binv5"]
-        #         try:
-        #             min_trade_turnover = float(
-        #                 request.form["min_trade_turnover_binv5"])
-        #             db.query(User).filter_by(id=current_user.id).first(
-        #             ).min_trade_turnover_binv5 = request.form["min_trade_turnover_binv5"]
-        #         except Exception as e:
-        #             print('Минимальный торговый оборот задан в неправильном формате', e)
-
-
-
-
-# class DealAPIView(generics.ListAPIView):
-#     queryset = Deal.objects.all()
-#     serializer_class = DealSerializer
