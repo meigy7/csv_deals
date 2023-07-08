@@ -20,11 +20,6 @@ from app_deals.views import DealAPIView, deals_get_page
 
 
 urlpatterns = [
-    # path('', admin.site.urls),
     path('', include('app_deals.urls')),
     path('admin/', admin.site.urls),
-    path('api/v1/deallist', DealAPIView.as_view()),
-    path('api/v1/deallistget', DealAPIView.as_view()),
-    path('get_deals', deals_get_page, name='get_deals'),
-
 ]

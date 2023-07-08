@@ -17,6 +17,17 @@ from django.db.models.functions import Concat
 import pytz
 import csv
 
+
+class DealAPIList(generics.ListCreateAPIView):
+    queryset = Deal.objects.all()
+    serializer_class = DealSerializer
+
+
+
+
+
+
+
 class DealAPIView(APIView):
     def post(self, request):
         csv_file = request.data['deals']
