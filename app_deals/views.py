@@ -23,9 +23,11 @@ class DealAPIList(generics.ListCreateAPIView):
     serializer_class = DealSerializer
 
 
-
-
-
+class DealsUploadPage(APIView):
+    def get(self, request):
+        template = loader.get_template('deals_list/file_upload.html')
+        context = {}
+        return HttpResponse(template.render(context, request))
 
 
 class DealAPIView(APIView):
@@ -59,13 +61,6 @@ class DealAPIView(APIView):
         model = Deal.objects.all()
         serializer = DealSerializer(model, many=True)
         return Response(serializer.data)
-
-
-class DealsUploadPage(APIView):
-    def get(self, request):
-        template = loader.get_template('deals_list/file_upload.html')
-        context = {}
-        return HttpResponse(template.render(context, request))
 
 
 
