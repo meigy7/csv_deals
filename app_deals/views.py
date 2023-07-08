@@ -55,7 +55,8 @@ class DealAPIView(APIView):
             return Response({'msg':'Файл был обработан без ошибок!', 'data':serializer.data}, status=status.HTTP_200_OK) 
         except Exception as e:
             return Response({'msg':'В процессе обработки файла произошла ошибка:', 'errors':[str(e), serializer.errors]}, status=status.HTTP_400_BAD_REQUEST)
-
+    
+    # API  function
     def get(self, request):
         model = Deal.objects.all()
         serializer = DealSerializer(model, many=True)
@@ -103,7 +104,4 @@ def deals_get_page(request):
         return result
     top_clients = get_top_clients(5,2)
     print('Готово!')
-    
-    
-    
     return HttpResponse(template.render(context, request))

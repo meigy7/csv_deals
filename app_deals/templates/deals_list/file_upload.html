@@ -21,16 +21,6 @@
     </button>
   </form>
 
-  <form action="api/v1/deallist" method="get" enctype='multipart/form-data'
-    style="display: flex; margin-top: 150px; justify-content: space-evenly; flex-direction: column; align-items: center;">
-    {% csrf_token %}
-    <button type="button" style="margin-top: 30px; width: 253px;">
-      <a href="{% url 'upload_deals' %}" style="text-decoration:none; color: inherit;">Обратно к загрузке!</a>
-    </button>
-  </form>
-
-
-
 </body>
 
 </html>
