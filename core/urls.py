@@ -16,8 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app_deals.views import DealAPIView, deals_get_page
-
 
 urlpatterns = [
     path('', include('app_deals.urls')),

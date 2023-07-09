@@ -8,40 +8,16 @@
 </head>
 
 <body>
-  <!-- <form action="" method="post">
-    <div class='flex_mod_adapt'>
-      <div class="mb-2 row">
-        <label for="currency_pair" class="col-md-4 col-form-label fw-bold">Дата</label>
-        <input style="margin-left: -6px; width:108px; height: 35px" class="form-control" type="date"
-          id="date_since_binv5" name="date_since_binv5" value="{{date_since_binv5}}" min="{{date_binv5_min}}"
-          max="{{date_binv5_max}}">
-      </div>
-      <div class="mb-2 row">
-        <label style="margin-left: 15px;" for="currency_pair"
-          class="col-md-5 col-form-label fw-bold">Время</label>
-        <input style="margin-left: -6px; width:78px; height: 35px" class="form-control" type="text"
-          placeholder={{time_since_binv5}} id="time_since_binv5" name="time_since_binv5"
-          value="{{time_since_binv5}}">
-      </div>
-      <div class="mb-3 row">
-        <label style="margin-left:20px;" for="currency_pair"
-          class="col-md-5 col-form-label fw-bold">Торги24ч</label>
-        <input style=" width:90px; height: 35px" class="form-control" type="text"
-          placeholder={{min_trade_turnover_binv5}} id="min_trade_turnover_binv5" name="min_trade_turnover_binv5"
-          value="{{min_trade_turnover_binv5}}">
-      </div>
-      <button style="min-width: 95px;" type="submit" name="type_action" value="update_settings_binv5"
-									class="btn btn-primary btn-md waves-effect waves-light">Сохранить</button>
-    </div>
-  </form> -->
-  <form action="api/v1/deallist" method="get" enctype='multipart/form-data'
+  <form action="api/v1/get_top_clients/10/" method="get" enctype='multipart/form-data'
     style="display: flex; margin-top: 150px; justify-content: space-evenly; flex-direction: column; align-items: center;">
     {% csrf_token %}
-    <input type="submit" style="width: 253px;">
+
+    <input type="submit" value="Получить результат" style="width: 253px;">
+
+    <button type="button" style="margin-top: 30px; width: 253px;">
+      <a href="{% url 'upload_deals_html' %}" style="text-decoration:none; color: inherit;">Обратно к загрузке!</a>
+    </button>
   </form>
-  <button type="button" style="margin-top: 30px; width: 253px;">
-    <a href="{% url 'upload_deals_html' %}" style="text-decoration:none; color: inherit;">Обратно к загрузке!</a>
-  </button>
 
 </body>
 
