@@ -13,9 +13,13 @@
     {% csrf_token %}
     <input type="file" id="myFile" name="csv_file" style="padding-bottom: 10px;">
     <input type="submit" style="width: 253px;">
-    <button type="button" style="margin-top: 30px; width: 253px;">
-      <a href="{% url 'get_deals_html' %}" style="text-decoration:none; color: inherit;">Посмотреть результат!</a>
-    </button>
+  </form>
+
+  <form action="api/v1/get_top_clients" method="get" enctype='multipart/form-data'
+    style="display: flex; margin-top: 30px; justify-content: space-evenly; flex-direction: column; align-items: center;">
+    {% csrf_token %}
+
+    <input type="submit" value="Посмотреть результат!" style="width: 253px;">
   </form>
 </body>
 </html>

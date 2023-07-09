@@ -13,36 +13,19 @@ class GemSerializer(serializers.ModelSerializer):
         model = Gem
         fields = ['name']
 
-
 class File_loadSerializer(serializers.ModelSerializer):
     class Meta:
         model = File_load
         fields = '__all__'
 
-
-class DealSerializer(serializers.ModelSerializer):
-    u_name = UserSerializer(many=True, read_only=True)
-    gems = serializers.ListField(read_only=True)
+class DealSerializer(serializers.Serializer):
     class Meta:
         model = Deal
-        fields = ('username', 'u_name', 'gem', 'gems')
+        fields = '__all__'
 
-        # ('username', 'sum_spent_money', 'gems'=['gem1','gem2','gem3'])
-
-
-
-
-
-
-
-
-
-    # u_name = serializers.SlugRelatedField(
-    #     many=True,
-    #     read_only=True,
-    #     slug_field='name'
-    # )
-    # username = serializers.SerializerMethodField('get_username_name')
-    # gem = serializers.SerializerMethodField('get_gem_name')
-    # u_name = serializers.CharField(source='username.name', read_only=True)
-    # spent_money2 = serializers.FloatField(read_only=True)
+class DealSerializer_top(serializers.Serializer):
+    username = serializers.CharField()
+    spent_money = serializers.DecimalField(max_digits=10, decimal_places=2)
+    gems = serializers.ListField(child=serializers.CharField())
+    class Meta:
+        fields = ('username', 'spent_money', 'gems')
