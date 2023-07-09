@@ -12,8 +12,11 @@ from django.template import loader
 import os, time
 from datetime import datetime, timedelta
 from django.utils import timezone
-from django.db.models import Sum, Count
+from django.db.models import Sum, Count, Value
 from django.db.models.functions import Concat
+#
+from django.db.models.functions import Concat
+from django.db.models.query import QuerySet
 import pytz
 import csv
 
@@ -111,12 +114,62 @@ class DealGetView(generics.ListAPIView):
         # q2 = self.model.objects.all().values('gem').filter(username__in=top_clients.values_list('username', flat=True)).annotate(qty_buy=Count(Concat('gem', 'username'), distinct=True)).filter(qty_buy__gte=gem_limit)
         # result = q1 | q2
         print('result:\n', result)
-        return result
+        queryset = result
+        return queryset
 
 
 
 
 
+
+
+
+''' Вариант №2
+def get_queryset(self):
+    serializer = self.get_serializer(data=self.request.data)
+    serializer.is_valid(raise_exception=True)
+    # num_clients = self.kwargs['pk']
+    num_clients = 5
+    gem_limit = 2
+
+    top_clients = (
+        self.model.objects
+        .filter(csv_file=File_load.objects.order_by('-id').first())
+        .values('username')
+        .annotate(spent_money=Sum('spent_money'))
+        .order_by('-spent_money')
+        [:num_clients]
+    )
+
+    print('top_clients', top_clients)
+
+    count_distinct_users_for_gem = (
+        self.model.objects    
+        .values('gem')
+        .filter(username__in=top_clients.values_list('username', flat=True))
+        .annotate(qty_buy=Count(Concat('gem', 'username'), distinct=True))
+        .filter(qty_buy__gte=gem_limit)
+    )
+
+    print('\ncount_distinct_users_for_gem:\n', count_distinct_users_for_gem)
+
+    gems_query = (
+        self.model.objects
+        .values_list('gem', flat=True)
+        .filter(username__in=top_clients.values_list('username', flat=True))
+        .distinct()
+        .filter(gem__in=count_distinct_users_for_gem.values('gem'))
+    )
+
+    result = (
+        top_clients
+        .annotate(gems=Concat(Value('['), Concat.Agg(gems_query), Value(']')))
+        .values('username', 'spent_money', 'gems')
+    )
+
+    return QuerySet(model=self.model, query=result.query, using=self.model._db)
+
+'''
 
 
 
@@ -139,10 +192,6 @@ class DealGetView(generics.ListAPIView):
 #         # value may be serialized already, thus not needing to be parsed here.
 #         value = datetime.strptime(value, dateformat) + timedelta(days=7)
 #         return queryset.filter(**{lookup: value})
-
-
-
-
 
 
 

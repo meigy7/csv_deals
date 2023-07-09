@@ -25,9 +25,9 @@ class DealSerializer(serializers.ModelSerializer):
     gems = serializers.ListField(read_only=True)
     class Meta:
         model = Deal
-        fields = ('username', 'u_name', 'gem', 'gems', 'spent_money')
+        fields = ('username', 'u_name', 'gem', 'gems')
 
-
+        # ('username', 'sum_spent_money', 'gems'=['gem1','gem2','gem3'])
 
 
 
