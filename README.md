@@ -5,25 +5,25 @@
 3. How it works<br>
 </h3>
 
-<h5>1. What is it used for</h5>
-CSV converter is needed: <br>
+<h4>1. What is it used for</h4>
+<h6>CSV converter is needed: <br>
 - to upload your csv_file of "Gem deals" on the server. <br>
 - to convert it in Django ORM format and write data in the DB.<br>
-- to get some information from DB with custom filtering by API request.<br>
+- to get some information from DB with custom filtering by API request.<br></h6>
 
-<h5>2. Installation</h5>
-2.1 Clone the full repository:<br>
+<h4>2. Installation</h4>
+<h6>2.1 Clone the full repository:<br>
 - You need to copy URL_path of this repository by clicking green button "Code" or just in the browser URL-panel.<br>
 - You need to open terminal, login to your local git, choose needed directory and paste: <br>
 git clone URL_path<br>
 
 2.2 Start docker container:<br>
 docker build --tag python-django .<br>
-docker run --publish 8000:8000 python-django<br>
+docker run --publish 8000:8000 python-django<br></h6>
 
 
-<h5>3. How it works</h5>
-By HTML<br>
+<h4>3. How it works</h4>
+<h6>By HTML<br>
 .1 Go to your IP-address:8000/ <br>
 Choose file,  upload<br>
 .2 Go back to your IP-address:8000/<br>
@@ -39,4 +39,4 @@ GET request: /api/v1/get_top_clients/{pk}/{pt}<br>
           'pt': minimun amount of top clients to buy gem, we take this gem into consideration (gem_sell filter)}<br>
   
   by default: pk=5, pt=2<br>
-  /api/v1/get_top_clients/5/2/<br>
+  /api/v1/get_top_clients/5/2/<br></h6>
