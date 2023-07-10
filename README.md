@@ -33,14 +33,14 @@ Click "Check Result"<br><br>
 <h4>By API</h4>
 3.1 Upload csv file<br>
 
-***_POST request:_***
+_POST request:_
 ```html
 endpoint: /api/v1/upload_csv
 params: {'csv_file':file}
 ```
 
 3.2 Get filtered data<br>
-__GET request:__
+_GET request:_
 
 ```html
 endpoint: /api/v1/get_top_clients/{pk}/{pt}
