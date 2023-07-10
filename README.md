@@ -19,9 +19,10 @@
 
 2.2 Start docker container:<br>
 ```bash
-docker build --tag python-django .<br>
-docker run --publish 8000:8000 python-django<br></h5>
+docker build --tag python-django .
+docker run --publish 8000:8000 python-django
 ```
+</h5>
 
 <h3>3. How it works</h3>
 <h5>By HTML<br>
@@ -34,17 +35,16 @@ By API<br>
 .1 Upload csv file<br>
 POST request: <br>
 ```html
-/api/v1/upload_csv<br>
-params:<br>
-{'csv_file' = file}<br>
+endpoint: /api/v1/upload_csv
+params: {'csv_file' = file}
 ```
 .2 Get filtered data<br>
 GET request: <br>
 ```html
-/api/v1/get_top_clients/{pk}/{pt}</code><br>
-  params:<br>
-  {'pk': how many top clients we take into consideration (top_clients filter)<br>
-    'pt': minimun amount of top clients to buy gem, we take this gem into consideration (gem_sell filter)}<br>
+endpoint: /api/v1/get_top_clients/{pk}/{pt}
+params:
+'pk': how many top clients we take into consideration (top_clients filter)
+'pt': minimun amount of top clients to buy gem, we take this gem into consideration (gem_sell filter)
 ```
   *by default: pk=5, pt=2<br>
   /api/v1/get_top_clients/5/2/<br></h5></div>
