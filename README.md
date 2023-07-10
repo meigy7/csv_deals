@@ -1,11 +1,11 @@
 # csv_deals
 <h2>
-1. What is CSV converter used for<br>
+1. What is it used for<br>
 2. Installation<br>
 3. How it works<br>
 </h2>
 <div style="background-color=white">
-<h3>1. What is CSV converter used for</h3>
+<h3>1. CSV converter is used for:</h3>
   - to upload your csv_file of "Gem deals" on the server. <br>
   - to convert it in Django ORM format and write data in the DB.<br>
   - to get some information from DB with custom filtering by API request.<br>
@@ -30,7 +30,7 @@ Choose file, upload CSV file for analysis<br>
 .2 Go back to your IP-address:8000/<br>
 Click "Check Result"<br><br>
 
-<h4>By API</h4><br>
+<h4>By API</h4>
 .1 Upload csv file<br>
 POST request: <br>
 
