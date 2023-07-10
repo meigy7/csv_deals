@@ -18,7 +18,7 @@
 <code>git clone URL_path</code><br>
 
 <h5>2.2 Start docker container:<br></h5>
-```bash
+```
 docker build --tag python-django .
 docker run --publish 8000:8000 python-django
 ```
