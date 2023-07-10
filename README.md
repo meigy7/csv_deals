@@ -40,7 +40,7 @@ params: {'csv_file':file}
 ```
 
 3.2 Get filtered data<br>
-_GET request:_
+__GET request:__
 
 ```html
 endpoint: /api/v1/get_top_clients/{pk}/{pt}
