@@ -2,7 +2,7 @@
 from rest_framework import status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.db.models import Sum, Count
 from django.db.models.functions import Concat
@@ -62,7 +62,7 @@ class DealGetView(generics.ListAPIView):
             .order_by('-spent_money')
             [:num_clients]
             )   
-        print('top_clients', top_clients)
+        # print('top_clients', top_clients)
         
         count_distinct_users_for_gem = (
             Deal.objects.all()
@@ -71,7 +71,7 @@ class DealGetView(generics.ListAPIView):
             .annotate(qty_buy=Count(Concat('gem', 'username'), distinct=True))
             .filter(qty_buy__gte=gem_limit)
             )
-        print('\ncount_distinct_users_for_gem:\n', count_distinct_users_for_gem)
+        # print('\ncount_distinct_users_for_gem:\n', count_distinct_users_for_gem)
 
         result = []
         for client in top_clients:
@@ -88,13 +88,10 @@ class DealGetView(generics.ListAPIView):
                 'gems': list(gems)
             }
             result.append(client_data)
-        print('result:\n', result)
-        
-        serializer = DealSerializer_top(data=result, many=True)
-        print('serializer:\n', serializer)
-        if serializer.is_valid():
-            serialized_data = serializer.data
-            print('Serializer is valid', serialized_data)
-            return serialized_data
+        # print('result:\n', result)
+
+        serializer = self.get_serializer(data=result, many=True)
+        if serializer.is_valid(raise_exception=True):
+            return serializer.data
         else:
-            return print('Error! Serializer is not valid', serializer.errors)
+            return serializer.errors

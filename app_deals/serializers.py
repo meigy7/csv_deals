@@ -29,3 +29,7 @@ class DealSerializer_top(serializers.Serializer):
     gems = serializers.ListField(child=serializers.CharField())
     class Meta:
         fields = ('username', 'spent_money', 'gems')
+    
+    # def to_representation(self, instance):
+    #     representation = instance
+    #     return {'Response':representation}
