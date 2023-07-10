@@ -33,7 +33,7 @@ Click "Check Result"<br><br>
 <h4>By API</h4>
 3.1 Upload csv file<br>
 
-****POST request:****
+***_POST request:_***
 ```html
 endpoint: /api/v1/upload_csv
 params: {'csv_file':file}
