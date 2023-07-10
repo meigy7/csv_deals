@@ -12,26 +12,26 @@
   - to get some information from DB with custom filtering by API request.<br>
 
 <h3>2. Installation</h3>
-<h5>2.1 Clone the full repository:<br></h5>
+<h4>2.1 Clone the full repository:<br></h4>
 - You need to copy URL_path of this repository by clicking green button "Code" or just in the browser URL-panel.<br>
 - login to your local git in terminal, paste: <br>
 <code>git clone URL_path</code><br>
 
-<h5>2.2 Start docker container:<br></h5>
-<h6>
+<h4>2.2 Start docker container:<br></h4>
+
 ```
 docker build --tag python-django .
 docker run --publish 8000:8000 python-django
 ```
-</h6>
+
 <h3>3. How it works</h3>
-<h5>By HTML<br></h5>
+<h4>By HTML<br></h4>
 .1 Go to your IP-address:8000/ <br>
 Choose file, upload CSV file for analysis<br>
 .2 Go back to your IP-address:8000/<br>
 Click "Check Result"<br><br>
 
-<h5>By API</h5><br>
+<h4>By API</h4><br>
 .1 Upload csv file<br>
 POST request: <br>
 ```python
