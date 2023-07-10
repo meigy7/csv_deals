@@ -18,9 +18,10 @@
 <code>git clone URL_path</code><br>
 
 2.2 Start docker container:<br>
-<code>docker build --tag python-django .<br>
-docker run --publish 8000:8000 python-django</code><br></h5>
-
+```bash
+docker build --tag python-django .<br>
+docker run --publish 8000:8000 python-django<br></h5>
+```
 
 <h3>3. How it works</h3>
 <h5>By HTML<br>
@@ -32,15 +33,18 @@ Click "Check Result"<br><br>
 By API<br>
 .1 Upload csv file<br>
 POST request: <br>
-<code>/api/v1/upload_csv</code><br>
-  params:<br>
-  {'csv_file' = file}<br>
+```html
+/api/v1/upload_csv<br>
+params:<br>
+{'csv_file' = file}<br>
+```
 .2 Get filtered data<br>
 GET request: <br>
-<code>/api/v1/get_top_clients/{pk}/{pt}</code><br>
+```html
+/api/v1/get_top_clients/{pk}/{pt}</code><br>
   params:<br>
   {'pk': how many top clients we take into consideration (top_clients filter)<br>
     'pt': minimun amount of top clients to buy gem, we take this gem into consideration (gem_sell filter)}<br>
-    
+```
   *by default: pk=5, pt=2<br>
   /api/v1/get_top_clients/5/2/<br></h5></div>
