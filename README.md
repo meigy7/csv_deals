@@ -14,8 +14,8 @@
 <h4>2. Installation</h4>
 <h6>2.1 Clone the full repository:<br>
 - You need to copy URL_path of this repository by clicking green button "Code" or just in the browser URL-panel.<br>
-- You need to open terminal, login to your local git, choose needed directory and paste: <br>
-git clone URL_path<br>
+- login to your local git in terminal, paste: <br>
+<code>git clone URL_path</code><br>
 
 2.2 Start docker container:<br>
 docker build --tag python-django .<br>
