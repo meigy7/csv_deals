@@ -1,19 +1,15 @@
 # -*- coding: UTF-8 -*- 
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
-from .models import Deal, File_load, User, Gem
-from .serializers import *
-from rest_framework import generics, serializers
+from rest_framework import status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from django.http import HttpResponse
 from django.template import loader
-from datetime import datetime, timedelta
-from django.db.models import Sum, Count, Value
+from django.db.models import Sum, Count
 from django.db.models.functions import Concat
-from django.db.models.query import QuerySet
+from .models import Deal, File_load, User, Gem
+from .serializers import *
 #
+from datetime import datetime
 import pytz
 import csv
 
@@ -25,13 +21,6 @@ class DealsUploadPage(APIView):
         context = {}
         return HttpResponse(template.render(context, request))
     
-# HTML Filter page
-class DealsFilterPage(APIView):
-    def get(self, request):
-        template = loader.get_template('deals_list/get_deals.html')
-        context = {}
-        return HttpResponse(template.render(context, request))
-
 # API post = Upload function; 
 class UploadFileView(generics.CreateAPIView):
     serializer_class = File_loadSerializer
