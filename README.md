@@ -12,6 +12,7 @@
 - to get some information from DB with custom filtering by API request.<br></h5>
 
 <h3>2. Installation</h3>
+**
 <h5>2.1 Clone the full repository:<br>
 - You need to copy URL_path of this repository by clicking green button "Code" or just in the browser URL-panel.<br>
 - login to your local git in terminal, paste: <br>
@@ -22,6 +23,7 @@
 docker build --tag python-django .
 docker run --publish 8000:8000 python-django
 ```
+**
 </h5>
 
 <h3>3. How it works</h3>
