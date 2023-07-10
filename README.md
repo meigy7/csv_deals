@@ -41,6 +41,6 @@ GET request: <br>
   params:<br>
   {'pk': how many top clients we take into consideration (top_clients filter)<br>
     'pt': minimun amount of top clients to buy gem, we take this gem into consideration (gem_sell filter)}<br>
-  
-  by default: pk=5, pt=2<br>
+    
+  *by default: pk=5, pt=2<br>
   /api/v1/get_top_clients/5/2/<br></h5></div>
