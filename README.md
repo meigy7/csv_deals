@@ -6,25 +6,24 @@
 </h2>
 <div style="background-color=white">
 <h3>1. What is it used for</h3>
-<h5>CSV converter is needed: <br>
-- to upload your csv_file of "Gem deals" on the server. <br>
-- to convert it in Django ORM format and write data in the DB.<br>
-- to get some information from DB with custom filtering by API request.<br></h5>
+<h5>CSV converter is needed: <br></h5>
+⋅⋅⋅- to upload your csv_file of "Gem deals" on the server. <br>
+⋅⋅⋅- to convert it in Django ORM format and write data in the DB.<br>
+⋅⋅⋅- to get some information from DB with custom filtering by API request.<br>
 
 <h3>2. Installation</h3>
 **
-<h5>2.1 Clone the full repository:<br>
+<h5>2.1 Clone the full repository:<br></h5>
 - You need to copy URL_path of this repository by clicking green button "Code" or just in the browser URL-panel.<br>
 - login to your local git in terminal, paste: <br>
 <code>git clone URL_path</code><br>
 
-2.2 Start docker container:<br>
+<h5>2.2 Start docker container:<br></h5>
 ```bash
 docker build --tag python-django .
 docker run --publish 8000:8000 python-django
 ```
 **
-</h5>
 
 <h3>3. How it works</h3>
 <h5>By HTML<br>
