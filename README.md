@@ -18,10 +18,12 @@
 <code>git clone URL_path</code><br>
 
 <h5>2.2 Start docker container:<br></h5>
+<h6>
 ```
 docker build --tag python-django .
 docker run --publish 8000:8000 python-django
 ```
+</h6>
 <h3>3. How it works</h3>
 <h5>By HTML<br></h5>
 .1 Go to your IP-address:8000/ <br>
@@ -32,7 +34,7 @@ Click "Check Result"<br><br>
 <h5>By API</h5><br>
 .1 Upload csv file<br>
 POST request: <br>
-```html
+```python
 endpoint: /api/v1/upload_csv
 params: {'csv_file' = file}
 ```
