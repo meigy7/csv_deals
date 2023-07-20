@@ -4,15 +4,15 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
-from django.db.models import Sum, Count
-from django.db.models.functions import Concat
 from .models import Deal, File_load, User, Gem
 from .serializers import *
+from .services.deal.list import TopDealListService
+from django.db.models import Sum, Count
+from django.db.models.functions import Concat
 #
 from datetime import datetime
 import pytz
 import csv
-
 
 # HTML Upload page
 class DealsUploadPage(APIView):
@@ -48,11 +48,25 @@ class UploadFileView(generics.CreateAPIView):
 
 
 # API get = Filter function;
-class DealGetView(generics.ListAPIView):
-    serializer_class = DealSerializer_top
-    def get_queryset(self):
-        num_clients = self.kwargs['pk']
-        gem_limit = self.kwargs['pt']
+# class DealGetView(APIView):
+#     def get(self, request, *args, **kwargs):
+#         try:
+#             outcome = TopDealListService.execute(kwargs)
+#         except Exception as error:
+#             return Response(
+#                 {'Error', str(error)}, status=status.HTTP_400_BAD_REQUEST)
+#         return Response({'Response':DealSerializer_top(outcome.result, many=True).data}, status=status.HTTP_200_OK)
+
+
+
+# API get = Filter function; (type 2)
+class DealGetView(APIView):
+    # serializer_class = DealSerializer
+    # serializer_class = DealSerializer_top
+    # def get_queryset(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
+        num_clients = self.kwargs['top_clients']
+        gem_limit = self.kwargs['min_limit_gem']
         # num_clients, gem_limit=5, 2
         top_clients = (
             Deal.objects.all()
@@ -68,11 +82,11 @@ class DealGetView(generics.ListAPIView):
             Deal.objects.all()
             .values('gem')
             .filter(username__in=top_clients.values_list('username', flat=True))
-            .annotate(qty_buy=Count(Concat('gem', 'username'), distinct=True))
+            .annotate(qty_buy=Count(Concat('gem', 'username'), distinct=True)) 
             .filter(qty_buy__gte=gem_limit)
             )
         # print('\ncount_distinct_users_for_gem:\n', count_distinct_users_for_gem)
-
+        
         result = []
         for client in top_clients:
             gems = (
@@ -83,6 +97,8 @@ class DealGetView(generics.ListAPIView):
                 .filter(gem__in=count_distinct_users_for_gem.values_list('gem', flat=True))
             )
             client_data = {
+                # 'username': User.objects.get(id=client['username']).id,
+                # 'username': client['username'],
                 'username': str(User.objects.all().filter(id = client['username']).first()),
                 'spent_money': client['spent_money'],
                 'gems': list(gems)
@@ -90,8 +106,13 @@ class DealGetView(generics.ListAPIView):
             result.append(client_data)
         # print('result:\n', result)
 
-        serializer = self.get_serializer(data=result, many=True)
+        serializer = DealSerializer_top(data=result, many=True)
+        # serializer = self.get_serializer(data=result, many=True)
         if serializer.is_valid(raise_exception=True):
-            return serializer.data
+            return Response({'Response':serializer.data}, status=status.HTTP_200_OK)
+            # return serializer.data
+            # return Response({'Response':DealSerializer_top(result).data}, status=status.HTTP_200_OK)
         else:
             return serializer.errors
+
+# 

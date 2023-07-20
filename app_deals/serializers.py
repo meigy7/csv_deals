@@ -1,6 +1,4 @@
 from rest_framework import serializers
-from django.db.models import Sum, Count
-from django.db.models.functions import Concat
 from .models import Deal, File_load, User, Gem
 
 class UserSerializer(serializers.ModelSerializer):
@@ -11,17 +9,18 @@ class UserSerializer(serializers.ModelSerializer):
 class GemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gem
-        fields = ['name']
+        fields = '__all__'
 
 class File_loadSerializer(serializers.ModelSerializer):
     class Meta:
         model = File_load
         fields = '__all__'
 
-class DealSerializer(serializers.Serializer):
+class DealSerializer(serializers.ModelSerializer):
+    gems = serializers.ListField(child=serializers.CharField())
     class Meta:
         model = Deal
-        fields = '__all__'
+        fields = ('username', 'spent_money', 'gems')
 
 class DealSerializer_top(serializers.Serializer):
     username = serializers.CharField()

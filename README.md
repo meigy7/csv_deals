@@ -50,4 +50,7 @@ params:
 ```
 
   *by default: pk=5, pt=2<br>
-  /api/v1/get_top_clients/5/2/<br></div>
+  /api/v1/get_top_clients/5/2/<br><br>
+
+  **Example csv-file:<br>
+  /media/example_file/CSV_Example.csv<br></div>
