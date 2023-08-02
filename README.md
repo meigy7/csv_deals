@@ -29,7 +29,6 @@ docker run --publish 8000:8000 python-django
 Choose file, upload CSV file for analysis<br>
 3.2 Go back to your IP-address:8000/<br>
 Click "Check Result"<br><br>
-
 <h4>By API</h4>
 3.1 Upload csv file<br>
 
