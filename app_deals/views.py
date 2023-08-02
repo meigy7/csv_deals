@@ -9,6 +9,8 @@ from .serializers import *
 from .services.deal.list import TopDealListService
 from django.db.models import Sum, Count
 from django.db.models.functions import Concat
+from app_deals.docs.deals import * 
+from drf_yasg.utils import swagger_auto_schema
 #
 from datetime import datetime
 import pytz
@@ -24,6 +26,7 @@ class DealsUploadPageView(APIView):
 # API post = Upload function; 
 class UploadFileView(generics.CreateAPIView):
     serializer_class = File_loadSerializer
+    @swagger_auto_schema(**UPLOAD_DEALS)
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -114,3 +117,9 @@ class DealGetView(APIView):
             # return Response({'Response':DealSerializer_top(result).data}, status=status.HTTP_200_OK)
         else:
             return serializer.errors
+
+#Without Generics
+class TestApiView(APIView):
+    @swagger_auto_schema(**UPLOAD_DEALS)
+    def post(self, request):
+        return Response({'key':'ok'})
