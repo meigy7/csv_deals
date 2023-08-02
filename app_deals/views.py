@@ -15,7 +15,7 @@ import pytz
 import csv
 
 # HTML Upload page
-class DealsUploadPage(APIView):
+class DealsUploadPageView(APIView):
     def get(self, request):
         template = loader.get_template('deals_list/file_upload.html')
         context = {}
@@ -51,7 +51,7 @@ class UploadFileView(generics.CreateAPIView):
 # class DealGetView(APIView):
 #     def get(self, request, *args, **kwargs):
 #         try:
-#             outcome = TopDealListService.execute(kwargs)
+#             outcome = TopDealListService.execute(kwargs|request.data)
 #         except Exception as error:
 #             return Response(
 #                 {'Error', str(error)}, status=status.HTTP_400_BAD_REQUEST)
@@ -114,5 +114,3 @@ class DealGetView(APIView):
             # return Response({'Response':DealSerializer_top(result).data}, status=status.HTTP_200_OK)
         else:
             return serializer.errors
-
-# 

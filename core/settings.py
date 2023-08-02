@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_deals.apps.DealsConfig',
     'rest_framework',
+    'drf_yasg',
  ]
 
 MIDDLEWARE = [

@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('app_deals.urls')),
+    path('', include('app_deals.swagger')),
     path('admin/', admin.site.urls),
 ]

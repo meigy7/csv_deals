@@ -4,10 +4,13 @@ from django.db.models.functions import Concat
 from app_deals.models import Deal, File_load, User
 from functools import lru_cache
 from service_objects.services import Service
+
+
 class TopDealListService(Service):
     """API service class for add photo"""
-    top_clients = forms.IntegerField()
-    min_limit_gem = forms.IntegerField()
+    # Валидация типа данных, какого типа они должны прийти
+    top_clients = forms.IntegerField(required=True)
+    min_limit_gem = forms.IntegerField(required=True)
     # custom_validations = ["validate_top_clients","validate_min_limit_gem"]
 
 

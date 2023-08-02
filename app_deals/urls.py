@@ -3,7 +3,7 @@ from app_deals.views import *
 
 urlpatterns = [
     # Пути templates - html:
-    path('', DealsUploadPage.as_view(), name='upload_deals_html'),
+    path('', DealsUploadPageView.as_view(), name='upload_deals_html'),
     
     # Пути API
     path('api/v1/upload_csv', UploadFileView.as_view(), name='upload_deals_api'),
